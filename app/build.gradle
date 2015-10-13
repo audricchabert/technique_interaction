@@ -35,7 +35,7 @@ apt {
     arguments {
 
         androidManifestFile variant.outputs[0].processResources.manifestFile
-        resourcePackageName 'com.example.clement.maze'
+        resourcePackageName 'com.example.clement.themaze'
 
         // if you have multiple outputs (when using splits), you may want to have other index than 0
 
