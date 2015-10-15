@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-7ab10115fb0e418e28d5e3d4e53555a106be640a.jar" />
+    </item>
+    <item
+        jar="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\pre-dexed\debug\classes-116eda9343a96ec2ed8707b8c575f9d404026ebd.jar" />
+    </item>
+    <item
+        jar="C:\Users\clement\AppData\Local\Android\sdk1\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-74de72002d64eee90551c574dd60be774f734cbf.jar" />
+    </item>
+    <item
+        jar="C:\Users\clement\.gradle\caches\modules-2\files-2.1\org.androidannotations\androidannotations-api\3.3.2\7d6149d856b880bbd676047aacb8446a758fbbdb\androidannotations-api-3.3.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7d6149d856b880bbd676047aacb8446a758fbbdb">
+        <dex dex="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\pre-dexed\debug\androidannotations-api-3.3.2-3f3592175051a2de4e309c8a874a5d85a2e1c667.jar" />
+    </item>
+    <item
+        jar="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\clement\AndroidStudioProjects\TheMaze\app\build\intermediates\pre-dexed\debug\classes-8496a878d29953569879fb9d22575528a8db6525.jar" />
+    </item>
+
+</items>

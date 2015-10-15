@@ -10,6 +10,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
+import org.androidannotations.annotations.AfterViews;
+
 
 public class MazeView extends SurfaceView {
     Paint paint;
@@ -58,7 +60,7 @@ public class MazeView extends SurfaceView {
                                        int width, int height) {
             }
         });
-        x=maze.getEntry()[0]%16
+
     }
     @Override
     protected void onMeasure(int w, int h){
@@ -86,5 +88,9 @@ public class MazeView extends SurfaceView {
 
         }
     }
-
+    @AfterViews
+    public void initPos(){
+        int largeurCase =Math.min( w / 16,h/16);
+        x=maze.getEntry()[0]%16*largeurCase
+    }
 }
