@@ -20,6 +20,8 @@ public class MazeView extends SurfaceView {
     private SurfaceHolder holder;
     private Bitmap bmp;
     private boolean mapView;
+    private int x;
+    private int y;
 
 
     public MazeView(Context context, AttributeSet attrs) {
@@ -56,6 +58,7 @@ public class MazeView extends SurfaceView {
                                        int width, int height) {
             }
         });
+        x=maze.getEntry()[0]%16
     }
     @Override
     protected void onMeasure(int w, int h){
@@ -74,10 +77,13 @@ public class MazeView extends SurfaceView {
             for (int i = 0; i < maze.getX(); i++) {
                 for (int j = 0; j < maze.getY(); j++) {
                     if (maze.getGrille()[i][j] == 0) {
-                        canvas.drawRect(largeurCase*i,largeurCase*j,largeurCase*(i+1),largeurCase*(j+1),paint);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
                     }
                 }
             }
+        }
+        else {
+
         }
     }
 

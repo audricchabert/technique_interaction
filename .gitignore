@@ -1,14 +1,10 @@
-.gradle
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
 .DS_Store
 /build
 /captures
-gradlew*
 settings*
-*.iml
 .idea
-/gradle
-gradle.properties
+
 app/proguard-rules.pro

@@ -8,12 +8,22 @@ public class Maze {
     private int x;
     private int y;
     private int[][] grille;
+    private int[] entry;
+    private int[] exit;
     public Maze(int x, int y){
         this.x=x;
         this.y=y;
         grille=new int[x][y];
+        entry = new int[2];
+        exit = new int[2];
     }
     public Maze(){
+        entry = new int[2];
+        exit = new int[2];
+        entry[0]= 16;
+        entry[1]= 32;
+        exit[0]= 7;
+        exit[1]= 8;
         x=16;
         y=16;
         grille=new int[16][16];
@@ -124,5 +134,21 @@ public class Maze {
 
     public void setGrille(int[][] grille) {
         this.grille = grille;
+    }
+
+    public int[] getEntry() {
+        return entry;
+    }
+
+    public void setEntry(int[] entry) {
+        this.entry = entry;
+    }
+
+    public int[] getExit() {
+        return exit;
+    }
+
+    public void setExit(int[] exit) {
+        this.exit = exit;
     }
 }
