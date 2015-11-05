@@ -10,7 +10,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
-public class AndroidTimerTaskExample extends Activity {
+public class TimerActivity extends Activity {
 
     Timer timer;
     TimerTask timerTask;
@@ -21,7 +21,7 @@ public class AndroidTimerTaskExample extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_timer);
     }
 
     @Override

@@ -42,7 +42,7 @@ public class DemoAccelero extends Activity {
 
         View v = findViewById(R.id.imageView);
 
-        Drawable image = getResources().getDrawable(R.drawable.fleche);
+        Drawable image = getResources().getDrawable(R.drawable.fleche2);
         int h = image.getIntrinsicHeight();
         int w = image.getIntrinsicWidth();
 

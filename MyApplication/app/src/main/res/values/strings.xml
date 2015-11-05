@@ -8,4 +8,5 @@
     <string name="button_2">Arrêter</string>
     <string name="button2">Autre test</string>
     <string name="sampleText">Trouvez le mot qui s\'affiche ici</string>
+    <string name="title_activity_timer">TimerActivity</string>
 </resources>
