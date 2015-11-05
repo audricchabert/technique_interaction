@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -21,11 +23,38 @@ public class MainActivity extends AppCompatActivity {
         mImageView = (ImageView) findViewById(R.id.imageView);
         mAttacher = new PhotoViewAttacher(mImageView);
 
+        //L'utilisation d'un scale n'est pas obligatoire
         //mAttacher.setMaximumScale(30.0f);
         //mAttacher.setScale(30.0f);
+
         //mAttacher.setOnDoubleTapListener();
 
+
+        /*
+            Ici le 2eme et 3eme argument sont le x et le y de la position
+         */
         mAttacher.setScale(mAttacher.getMaximumScale(), mImageView.getX(), mImageView.getY(), true);
+
+        //code pour le clic du bouton "lancer"
+        Button button =(Button) findViewById(R.id.button_launch);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
+        button = (Button) findViewById(R.id.button_change);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
 
     }
 
@@ -50,4 +79,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }
