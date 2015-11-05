@@ -1,4 +1,6 @@
 package com.example.clement.themaze;
+import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
 
 public class GameLoopThread extends Thread {
@@ -6,7 +8,7 @@ public class GameLoopThread extends Thread {
     private MazeView view;
     private boolean running = false;
 
-    public GameLoopThread(MazeView view) {
+    public GameLoopThread(MazeView view, Context context) {
         this.view = view;
     }
 
@@ -25,7 +27,13 @@ public class GameLoopThread extends Thread {
             try {
                 c = view.getHolder().lockCanvas();
                 synchronized (view.getHolder()) {
-                    view.draw(c);
+                    Activity activity = (Activity) view.getContext();
+                    activity.runOnUiThread(new Runnable(){
+                        public void run(){
+                            view.invalidate();
+
+                        }
+                    });
                 }
             } finally {
                 if (c != null) {

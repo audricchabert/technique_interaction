@@ -6,10 +6,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-
+import android.widget.Toast;
 
 
 public class MazeView extends SurfaceView {
@@ -31,7 +31,7 @@ public class MazeView extends SurfaceView {
         paint=new Paint();
         this.setBackgroundColor(Color.WHITE);
         maze= new Maze();
-        gameLoopThread = new GameLoopThread(this);
+        gameLoopThread = new GameLoopThread(this,context);
         holder = getHolder();
         holder.addCallback(new SurfaceHolder.Callback() {
             @Override
@@ -97,8 +97,7 @@ public class MazeView extends SurfaceView {
         else {
             int largeurCase =Math.min( w / 16,h/16);
             paint.setColor(Color.BLACK);
-            canvas.drawCircle(x,y,largeurCase/4,paint);
-
+            canvas.drawCircle(w/2,h/2,largeurCase,paint);
         }
     }
    public void setMapView(){
