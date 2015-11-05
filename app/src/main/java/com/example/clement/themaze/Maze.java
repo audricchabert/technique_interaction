@@ -8,26 +8,16 @@ public class Maze {
     private int x;
     private int y;
     private int[][] grille;
-    private int[] entry;
-    private int[] exit;
     public Maze(int x, int y){
         this.x=x;
         this.y=y;
         grille=new int[x][y];
-        entry = new int[2];
-        exit = new int[2];
     }
     public Maze(){
-        entry = new int[2];
-        exit = new int[2];
-        entry[0]= 16;
-        entry[1]= 32;
-        exit[0]= 7;
-        exit[1]= 8;
         x=16;
         y=16;
         grille=new int[16][16];
-        //0 noir, 1 blanc
+        //0 noir, 1 blanc 2 entré 3 sortie
         for (int i =0;i<16;i++){
             if (i==7||i==8){
                 grille[0][i]=1;
@@ -110,6 +100,10 @@ public class Maze {
         for (int i =0;i<16;i++){
             grille[15][i]=0;
         }
+        grille[1][0]= 2;
+        grille[2][0]= 2;
+        grille[0][7]= 3;
+        grille[0][8]= 3;
     }
 
     public int getY() {
@@ -136,19 +130,4 @@ public class Maze {
         this.grille = grille;
     }
 
-    public int[] getEntry() {
-        return entry;
-    }
-
-    public void setEntry(int[] entry) {
-        this.entry = entry;
-    }
-
-    public int[] getExit() {
-        return exit;
-    }
-
-    public void setExit(int[] exit) {
-        this.exit = exit;
-    }
 }

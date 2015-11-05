@@ -10,7 +10,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 
-import org.androidannotations.annotations.AfterViews;
 
 
 public class MazeView extends SurfaceView {
@@ -35,7 +34,6 @@ public class MazeView extends SurfaceView {
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
         holder.addCallback(new SurfaceHolder.Callback() {
-
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 boolean retry = true;
@@ -68,6 +66,7 @@ public class MazeView extends SurfaceView {
         this.w=getMeasuredWidth();
         this.h=getMeasuredHeight();
     }
+
     @Override
     public void onDraw(Canvas canvas){
 
@@ -79,18 +78,30 @@ public class MazeView extends SurfaceView {
             for (int i = 0; i < maze.getX(); i++) {
                 for (int j = 0; j < maze.getY(); j++) {
                     if (maze.getGrille()[i][j] == 0) {
+                        paint.setColor(Color.BLACK);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                    }
+                    else if (maze.getGrille()[i][j] == 2) {
+                        paint.setColor(Color.BLUE);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                        x=i*largeurCase+largeurCase/2;
+                        y=j*largeurCase+largeurCase/2;
+                    }
+                    else if (maze.getGrille()[i][j] == 3) {
+                        paint.setColor(Color.RED);
                         canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
                     }
                 }
             }
         }
         else {
+            int largeurCase =Math.min( w / 16,h/16);
+            paint.setColor(Color.BLACK);
+            canvas.drawCircle(x,y,largeurCase/4,paint);
 
         }
     }
-    @AfterViews
-    public void initPos(){
-        int largeurCase =Math.min( w / 16,h/16);
-        x=maze.getEntry()[0]%16*largeurCase
-    }
+   public void setMapView(){
+       mapView=!mapView;
+   }
 }
