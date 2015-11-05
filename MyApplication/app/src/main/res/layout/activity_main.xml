@@ -5,7 +5,16 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="450dp"
         android:id="@+id/imageView"
         android:src="@drawable/graphe" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_1"
+        android:id="@+id/button2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp" />
 </RelativeLayout>
