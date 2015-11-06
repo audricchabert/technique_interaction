@@ -9,7 +9,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.Toast;
 
 
 public class MazeView extends SurfaceView {
@@ -23,6 +22,7 @@ public class MazeView extends SurfaceView {
     private boolean mapView;
     private int x;
     private int y;
+    private boolean init= true;
 
 
     public MazeView(Context context, AttributeSet attrs) {
@@ -84,8 +84,11 @@ public class MazeView extends SurfaceView {
                     else if (maze.getGrille()[i][j] == 2) {
                         paint.setColor(Color.BLUE);
                         canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
-                        x=i*largeurCase+largeurCase/2;
-                        y=j*largeurCase+largeurCase/2;
+                        if(init) {
+                            x = i * largeurCase + largeurCase / 2;
+                            y = j * largeurCase + largeurCase / 2;
+                            init=false;
+                        }
                     }
                     else if (maze.getGrille()[i][j] == 3) {
                         paint.setColor(Color.RED);
@@ -96,9 +99,54 @@ public class MazeView extends SurfaceView {
         }
         else {
             int largeurCase =Math.min( w / 16,h/16);
+            int largeurCaseInNewFrame =Math.min( w/4,h/4);
+            int tailleFenetre =Math.min( w / 2,h/2);
+            int caseX=x/largeurCase;
+            int caseY=y/largeurCase;
+            int deCalageCaseX=x%largeurCase*largeurCaseInNewFrame/largeurCase;
+            int deCalageCaseY=y%largeurCase*largeurCaseInNewFrame/largeurCase;
+
             paint.setColor(Color.BLACK);
-            canvas.drawCircle(w/2,h/2,largeurCase,paint);
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++) {
+                    int x1 =largeurCaseInNewFrame * i -deCalageCaseX;
+                    int x2= largeurCaseInNewFrame * (i + 1)-deCalageCaseX;
+                    int y1= largeurCaseInNewFrame * j -deCalageCaseY ;
+                    int y2= largeurCaseInNewFrame * (j + 1)-deCalageCaseY;
+
+                    if (!(caseX - 2 + i < 0 || caseX - 2 + i >= maze.getX()) && !(caseY - 2 + j < 0 || caseY - 2 + j >= maze.getY())) {
+
+                        if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 2){
+                            paint.setColor(Color.BLUE);
+                            canvas.drawRect(y1,x1,y2,x2, paint);
+
+                        }
+                        if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3){
+                            paint.setColor(Color.RED);
+
+                            canvas.drawRect(y1,x1,y2,x2, paint);
+                        }
+                        if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 0){
+                            paint.setColor(Color.BLACK);
+                            canvas.drawRect(y1,x1,y2,x2, paint);
+
+                        }
+                    }
+                    else{
+                        paint.setColor(Color.BLACK);
+                        canvas.drawRect(y1,x1,y2,x2, paint);
+                    }
+                }
+            }
+            canvas.drawCircle(tailleFenetre,tailleFenetre,largeurCase,paint);
         }
+    }
+
+    public void changeXY(float y , float x){
+        if (x>2)this.x+=x;
+        else if (x<-2)this.x+=x;
+        if (y>2)this.y+=-y;
+        else if (y<-2)this.y+=-y;
     }
    public void setMapView(){
        mapView=!mapView;
