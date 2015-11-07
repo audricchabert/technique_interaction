@@ -76,7 +76,7 @@ public class MazeView extends SurfaceView {
     public void onDraw(Canvas canvas){
 
 
-        Drawable d = getResources().getDrawable(R.drawable.chemin2);
+        Drawable d = getResources().getDrawable(R.drawable.chemin5);
         Drawable d2 = getResources().getDrawable(R.drawable.buisson);
         if (mapView) {
             int largeurCase =Math.min( w / 16,h/16);
