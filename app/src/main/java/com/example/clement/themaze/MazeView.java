@@ -69,7 +69,6 @@ public class MazeView extends SurfaceView {
 
     @Override
     public void onDraw(Canvas canvas){
-
         if (mapView) {
             int largeurCase =Math.min( w / 16,h/16);
             //paint.setStyle(Paint.Style.FILL_AND_STROKE);
