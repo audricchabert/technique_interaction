@@ -62,7 +62,6 @@ public class MazeView extends SurfaceView {
     @Override
     protected void onMeasure(int w, int h){
         int size =Math.min( w,h);
-
         setMeasuredDimension(size, size);
         this.w=getMeasuredWidth();
         this.h=getMeasuredHeight();
@@ -152,10 +151,35 @@ public class MazeView extends SurfaceView {
     }
 
     public void changeXY(float y , float x){
-        if (x>2)this.x+=x;
-        else if (x<-2)this.x+=x;
-        if (y>2)this.y+=-y;
-        else if (y<-2)this.y+=-y;
+        int largeurCase =Math.min( w / 16,h/16);
+        int newX=this.x;
+        int newY=this.y;
+        if (x>2||x<-2){
+            newX+=x;
+        }
+
+        if (y>2|| y<-2){
+            newY+=-y;
+        }
+
+        int caseX=newX/largeurCase;
+        int caseY=newY/largeurCase;
+
+        if (!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX][caseY] == 0)) {
+            this.x=newX;
+            this.y=newY;
+        }
+        caseX=this.x/largeurCase;
+        caseY=newY/largeurCase;
+        if (!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && maze.getGrille()[caseX][caseY] == 0) {
+            this.x=newX;
+        }
+        caseX=newX/largeurCase;
+        caseY=this.y/largeurCase;
+        if (!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && maze.getGrille()[caseX][caseY] == 0) {
+            this.y=newY;
+        }
+
     }
    public void setMapView(){
        mapView=!mapView;
