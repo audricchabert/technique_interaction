@@ -9,6 +9,7 @@ import android.graphics.Paint;
 
 import android.util.AttributeSet;
 
+import android.graphics.drawable.Drawable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -63,31 +64,32 @@ public class MazeView extends SurfaceView {
     }
     @Override
     protected void onMeasure(int w, int h){
-        setMeasuredDimension(w, h);
+        int size =Math.min( w,h);
+
+        setMeasuredDimension(size, size);
         this.w=getMeasuredWidth();
         this.h=getMeasuredHeight();
+
     }
 
     @Override
     public void onDraw(Canvas canvas){
-        /*try ( InputStream is = new URL( file_url ).openStream() ) {
-            Bitmap bitmap = BitmapFactory.decodeStream( is );
-        }
-        InputStream resource = getResources().openRawResource(R.drawable.background_maze);
-        Bitmap bitmap = BitmapFactory.decodeStream(resource);
-        */
 
-        //canvas.drawBitmap(background, 15,15,this.paint);
+
+        Drawable d = getResources().getDrawable(R.drawable.chemin2);
+        Drawable d2 = getResources().getDrawable(R.drawable.buisson);
         if (mapView) {
             int largeurCase =Math.min( w / 16,h/16);
-            //paint.setStyle(Paint.Style.FILL_AND_STROKE);
             paint.setColor(Color.BLACK);
 
             for (int i = 0; i < maze.getX(); i++) {
                 for (int j = 0; j < maze.getY(); j++) {
                     if (maze.getGrille()[i][j] == 0) {
+                        d2.setBounds(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1));
+                        d2.draw(canvas);
+                        /*
                         paint.setColor(Color.BLACK);
-                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);*/
                     }
                     else if (maze.getGrille()[i][j] == 2) {
                         paint.setColor(Color.BLUE);
@@ -101,6 +103,10 @@ public class MazeView extends SurfaceView {
                     else if (maze.getGrille()[i][j] == 3) {
                         paint.setColor(Color.RED);
                         canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                    }
+                    else{
+                        d.setBounds(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1));
+                        d.draw(canvas);
                     }
                 }
             }
@@ -126,27 +132,31 @@ public class MazeView extends SurfaceView {
 
                         if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 2){
                             paint.setColor(Color.BLUE);
-                            canvas.drawRect(y1,x1,y2,x2, paint);
+                            canvas.drawRect(y1, x1, y2, x2, paint);
 
                         }
-                        if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3){
+                        else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3){
                             paint.setColor(Color.RED);
 
                             canvas.drawRect(y1,x1,y2,x2, paint);
                         }
-                        if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 0){
-                            paint.setColor(Color.BLACK);
-                            canvas.drawRect(y1,x1,y2,x2, paint);
-
+                        else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 0){
+                            d2.setBounds(y1,x1,y2,x2);
+                            d2.draw(canvas);
+                        }
+                        else{
+                            d.setBounds(y1,x1,y2,x2);
+                            d.draw(canvas);
                         }
                     }
                     else{
-                        paint.setColor(Color.BLACK);
-                        canvas.drawRect(y1,x1,y2,x2, paint);
+                        d2.setBounds(y1,x1,y2,x2);
+                        d2.draw(canvas);
                     }
                 }
             }
-            canvas.drawCircle(tailleFenetre,tailleFenetre,largeurCase,paint);
+            paint.setColor(Color.BLACK);
+            canvas.drawCircle(tailleFenetre, tailleFenetre, largeurCase, paint);
         }
     }
 

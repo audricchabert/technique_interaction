@@ -29,9 +29,6 @@ public class TheMaze extends Activity implements SensorEventListener {
     MazeView mazeView;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
-    private  float yAcceleration, xAcceleration;
-    private float yVelocity=0.0f;
-    private float xVelocity=0.0f;
 
     private boolean map=true;
     @Click
@@ -101,10 +98,6 @@ public class TheMaze extends Activity implements SensorEventListener {
                 long diffTime = (curTime - lastUpdate);
                 lastUpdate = curTime;
 
-                xVelocity +=  (x * diffTime);
-                yVelocity +=  (y * diffTime);
-                float xDistance=yVelocity*diffTime/2;
-                float yDistance=yVelocity*diffTime/2;
                 last_x = x;
                 last_y = y;
                 //mazeView.changeXY(x, y);
