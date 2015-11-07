@@ -91,7 +91,6 @@ public class TheMaze extends Activity implements SensorEventListener {
                     y = -event.values[0];
                     break;
             }
-            Log.e("TAG",x+" "+y);
             long curTime = System.currentTimeMillis();
 
             if ((curTime - lastUpdate) > 10) {

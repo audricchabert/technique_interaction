@@ -10,6 +10,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -84,7 +85,7 @@ public class MazeView extends SurfaceView {
             for (int i = 0; i < maze.getX(); i++) {
                 for (int j = 0; j < maze.getY(); j++) {
                     if (maze.getGrille()[i][j] == 0) {
-                        d2.setBounds(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1));
+                        d2.setBounds(largeurCase * j, largeurCase * i, largeurCase * (j + 1), largeurCase * (i + 1));
                         d2.draw(canvas);
                         /*
                         paint.setColor(Color.BLACK);
@@ -140,7 +141,7 @@ public class MazeView extends SurfaceView {
                             canvas.drawRect(y1,x1,y2,x2, paint);
                         }
                         else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 0){
-                            d2.setBounds(y1,x1,y2,x2);
+                            d2.setBounds(y1, x1, y2, x2);
                             d2.draw(canvas);
                         }
                         else{
@@ -149,7 +150,7 @@ public class MazeView extends SurfaceView {
                         }
                     }
                     else{
-                        d2.setBounds(y1,x1,y2,x2);
+                        d2.setBounds(y1, x1, y2, x2);
                         d2.draw(canvas);
                     }
                 }
@@ -170,23 +171,21 @@ public class MazeView extends SurfaceView {
         if (y>2|| y<-2){
             newY+=-y;
         }
-
         int caseX=newX/largeurCase;
         int caseY=newY/largeurCase;
+        int caseX0=this.x/largeurCase;
+        int caseY0=this.y/largeurCase;
 
-        if (!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX][caseY] == 0)) {
+        if (newX>=0 && newY>=0&&!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX][caseY] == 0)) {
             this.x=newX;
             this.y=newY;
         }
-        caseX=this.x/largeurCase;
-        caseY=newY/largeurCase;
-        if (!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && maze.getGrille()[caseX][caseY] == 0) {
-            this.x=newX;
-        }
-        caseX=newX/largeurCase;
-        caseY=this.y/largeurCase;
-        if (!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && maze.getGrille()[caseX][caseY] == 0) {
+        else if (newY>=0 &&!(caseX0 < 0 || caseX0 >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX0][caseY] == 0)) {
             this.y=newY;
+        }
+        else if (newX>=0 &&!(caseX < 0 || caseX >= maze.getX()) && !(caseY0  < 0 || caseY0 >= maze.getY()) &&!( maze.getGrille()[caseX][caseY0] == 0)) {
+            this.x=newX;
+
         }
 
     }
