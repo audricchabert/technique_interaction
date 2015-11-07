@@ -2,13 +2,6 @@
 <items version="2" >
 
     <item
-        jar="D:\Android\TheMaze\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.2"
-        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
-        <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\classes-67f6f4c25be603b78a49cc946a12574fcdfad43f.jar" />
-    </item>
-    <item
         jar="D:\Android\TheMaze\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -16,11 +9,18 @@
         <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\classes-cc020a1c57e2575a6721e4378da869007046453e.jar" />
     </item>
     <item
-        jar="C:\Users\Remi\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jar="D:\Android\TheMaze\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
-        <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-a419b899b17336918dee5887dbc5e3025f3c0669.jar" />
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\classes-67f6f4c25be603b78a49cc946a12574fcdfad43f.jar" />
+    </item>
+    <item
+        jar="C:\Users\Remi\.gradle\caches\modules-2\files-2.1\org.androidannotations\androidannotations-api\3.3.2\7d6149d856b880bbd676047aacb8446a758fbbdb\androidannotations-api-3.3.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7d6149d856b880bbd676047aacb8446a758fbbdb">
+        <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\androidannotations-api-3.3.2-c8978338447f38cab7b653c6aeb252f57aeeebfb.jar" />
     </item>
     <item
         jar="D:\Android\TheMaze\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
@@ -30,11 +30,11 @@
         <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-dcf8ec49f20254446a5fb54ba3fd2642cbd6a9e8.jar" />
     </item>
     <item
-        jar="C:\Users\Remi\.gradle\caches\modules-2\files-2.1\org.androidannotations\androidannotations-api\3.3.2\7d6149d856b880bbd676047aacb8446a758fbbdb\androidannotations-api-3.3.2.jar"
+        jar="C:\Users\Remi\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
         jumboMode="false"
         revision="21.1.2"
-        sha1="7d6149d856b880bbd676047aacb8446a758fbbdb">
-        <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\androidannotations-api-3.3.2-c8978338447f38cab7b653c6aeb252f57aeeebfb.jar" />
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="D:\Android\TheMaze\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-a419b899b17336918dee5887dbc5e3025f3c0669.jar" />
     </item>
 
 </items>

@@ -29,6 +29,10 @@ public class TheMaze extends Activity implements SensorEventListener {
     MazeView mazeView;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
+    private  float yAcceleration, xAcceleration;
+    private float yVelocity=0.0f;
+    private float xVelocity=0.0f;
+
     private boolean map=true;
     @Click
     public void buttonSwitchView(){
@@ -65,6 +69,8 @@ public class TheMaze extends Activity implements SensorEventListener {
     @Override
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
+
+
         if (mySensor.getType()==Sensor.TYPE_ACCELEROMETER){
             float x = event.values[0];
             float y = event.values[1];
@@ -94,11 +100,16 @@ public class TheMaze extends Activity implements SensorEventListener {
             if ((curTime - lastUpdate) > 10) {
                 long diffTime = (curTime - lastUpdate);
                 lastUpdate = curTime;
+
+                xVelocity +=  (x * diffTime);
+                yVelocity +=  (y * diffTime);
+                float xDistance=yVelocity*diffTime/2;
+                float yDistance=yVelocity*diffTime/2;
                 last_x = x;
                 last_y = y;
+                //mazeView.changeXY(x, y);
                 mazeView.changeXY(x, y);
                 Log.e("TAG",x+" "+ y);
-
             }
         }
     }
