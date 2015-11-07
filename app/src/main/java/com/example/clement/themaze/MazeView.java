@@ -2,14 +2,20 @@ package com.example.clement.themaze;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Picture;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+import android.view.View;
+import android.R;
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 
 public class MazeView extends SurfaceView {
     Paint paint;
@@ -69,6 +75,16 @@ public class MazeView extends SurfaceView {
 
     @Override
     public void onDraw(Canvas canvas){
+<<<<<<< HEAD
+=======
+        /*try ( InputStream is = new URL( file_url ).openStream() ) {
+            Bitmap bitmap = BitmapFactory.decodeStream( is );
+        }*/
+        InputStream resource = getResources().openRawResource(R.drawable.background_maze);
+        Bitmap bitmap = BitmapFactory.decodeStream(resource);
+
+        //canvas.drawBitmap(background, 15,15,this.paint);
+>>>>>>> origin/master
         if (mapView) {
             int largeurCase =Math.min( w / 16,h/16);
             //paint.setStyle(Paint.Style.FILL_AND_STROKE);
