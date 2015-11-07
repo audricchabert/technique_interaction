@@ -2,11 +2,14 @@ package com.example.clement.themaze;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
+
 import android.util.AttributeSet;
+
+import android.graphics.drawable.Drawable;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -71,7 +74,9 @@ public class MazeView extends SurfaceView {
     @Override
     public void onDraw(Canvas canvas){
 
-        Drawable d = getResources().getDrawable(R.drawable.chemin);
+
+        Drawable d = getResources().getDrawable(R.drawable.chemin2);
+        Drawable d2 = getResources().getDrawable(R.drawable.buisson);
         if (mapView) {
             int largeurCase =Math.min( w / 16,h/16);
             paint.setColor(Color.BLACK);
@@ -79,8 +84,11 @@ public class MazeView extends SurfaceView {
             for (int i = 0; i < maze.getX(); i++) {
                 for (int j = 0; j < maze.getY(); j++) {
                     if (maze.getGrille()[i][j] == 0) {
+                        d2.setBounds(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1));
+                        d2.draw(canvas);
+                        /*
                         paint.setColor(Color.BLACK);
-                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);*/
                     }
                     else if (maze.getGrille()[i][j] == 2) {
                         paint.setColor(Color.BLUE);
@@ -123,7 +131,7 @@ public class MazeView extends SurfaceView {
 
                         if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 2){
                             paint.setColor(Color.BLUE);
-                            canvas.drawRect(y1,x1,y2,x2, paint);
+                            canvas.drawRect(y1, x1, y2, x2, paint);
 
                         }
                         else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3){
@@ -132,8 +140,8 @@ public class MazeView extends SurfaceView {
                             canvas.drawRect(y1,x1,y2,x2, paint);
                         }
                         else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 0){
-                            paint.setColor(Color.BLACK);
-                            canvas.drawRect(y1,x1,y2,x2, paint);
+                            d2.setBounds(y1,x1,y2,x2);
+                            d2.draw(canvas);
                         }
                         else{
                             d.setBounds(y1,x1,y2,x2);
@@ -141,12 +149,13 @@ public class MazeView extends SurfaceView {
                         }
                     }
                     else{
-                        paint.setColor(Color.BLACK);
-                        canvas.drawRect(y1,x1,y2,x2, paint);
+                        d2.setBounds(y1,x1,y2,x2);
+                        d2.draw(canvas);
                     }
                 }
             }
-            canvas.drawCircle(tailleFenetre,tailleFenetre,largeurCase,paint);
+            paint.setColor(Color.BLACK);
+            canvas.drawCircle(tailleFenetre, tailleFenetre, largeurCase, paint);
         }
     }
 
