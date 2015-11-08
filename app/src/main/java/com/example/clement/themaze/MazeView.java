@@ -169,6 +169,9 @@ public class MazeView extends SurfaceView {
                     }
                 }
             }
+            /*Drawable layer=rotateDrawable(character,0);
+            layer.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
+            layer.draw(canvas);*/
 
             character.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
             character.draw(canvas);
@@ -224,10 +227,28 @@ public class MazeView extends SurfaceView {
         }
     }
 
-    public void changeXYOnClick(float x,float y){
+    public void changeXYOnClick(float y,float x){
         Log.e("TAGLAUTRECACA", this.x +" "+this.y);
-        this.x=(int) ((x - h/2)/16)+this.x;
-        this.y=(int) ((y - h/2)/16)+this.y;
+        int newX=(int) ((x - w/2)/16)+this.x;
+        int newY=(int) ((y - h/2)/16)+this.y;
+        int largeurCase =Math.min( w / 16,h/16);
+        int caseX=newX/largeurCase;
+        int caseY=newY/largeurCase;
+        int caseX0=this.x/largeurCase;
+        int caseY0=this.y/largeurCase;
+        if (newX>=0 && newY>=0&&!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX][caseY] == 0)) {
+            this.x=newX;
+            this.y=newY;
+            //this.angle=45;
+        }
+        else if (newY>=0 &&!(caseX0 < 0 || caseX0 >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX0][caseY] == 0)) {
+            this.y=newY;
+            //this.angle=90;
+        }
+        else if (newX>=0 &&!(caseX < 0 || caseX >= maze.getX()) && !(caseY0  < 0 || caseY0 >= maze.getY()) &&!( maze.getGrille()[caseX][caseY0] == 0)) {
+            this.x=newX;
+            //this.angle=0;
+        }
         Log.e("TAGLAUTRECAAAAAAaaCA", this.x +" "+this.y);
     }
 
