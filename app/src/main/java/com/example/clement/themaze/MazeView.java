@@ -7,6 +7,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.RotateDrawable;
 import android.util.AttributeSet;
 
 import android.graphics.drawable.Drawable;
@@ -26,7 +28,7 @@ public class MazeView extends SurfaceView {
     private int x;
     private int y;
     private boolean init= true;
-
+    private float angle;
 
     public MazeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -78,6 +80,9 @@ public class MazeView extends SurfaceView {
 
         Drawable d = getResources().getDrawable(R.drawable.chemin2);
         Drawable d2 = getResources().getDrawable(R.drawable.buisson);
+        Drawable start = getResources().getDrawable(R.drawable.start);
+        Drawable end = getResources().getDrawable(R.drawable.start2);
+        Drawable character = getResources().getDrawable(R.drawable.character);
         if (mapView) {
             int largeurCase =Math.min( w / 16,h/16);
             paint.setColor(Color.BLACK);
@@ -87,13 +92,16 @@ public class MazeView extends SurfaceView {
                     if (maze.getGrille()[i][j] == 0) {
                         d2.setBounds(largeurCase * j, largeurCase * i, largeurCase * (j + 1), largeurCase * (i + 1));
                         d2.draw(canvas);
+
                         /*
                         paint.setColor(Color.BLACK);
                         canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);*/
                     }
                     else if (maze.getGrille()[i][j] == 2) {
-                        paint.setColor(Color.BLUE);
-                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                        /*paint.setColor(Color.BLUE);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);*/
+                        start.setBounds(largeurCase * j, largeurCase * i, largeurCase * (j + 1), largeurCase * (i + 1));
+                        start.draw(canvas);
                         if(init) {
                             x = i * largeurCase + largeurCase / 2;
                             y = j * largeurCase + largeurCase / 2;
@@ -101,12 +109,15 @@ public class MazeView extends SurfaceView {
                         }
                     }
                     else if (maze.getGrille()[i][j] == 3) {
-                        paint.setColor(Color.RED);
-                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);
+                        /*paint.setColor(Color.RED);
+                        canvas.drawRect(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1),paint);*/
+                        end.setBounds(largeurCase * j, largeurCase * i, largeurCase * (j + 1), largeurCase * (i + 1));
+                        end.draw(canvas);
                     }
                     else{
-                        d.setBounds(largeurCase*j,largeurCase*i,largeurCase*(j+1),largeurCase*(i+1));
+                        d.setBounds(largeurCase * j, largeurCase * i, largeurCase * (j + 1), largeurCase * (i + 1));
                         d.draw(canvas);
+
                     }
                 }
             }
@@ -131,14 +142,18 @@ public class MazeView extends SurfaceView {
                     if (!(caseX - 2 + i < 0 || caseX - 2 + i >= maze.getX()) && !(caseY - 2 + j < 0 || caseY - 2 + j >= maze.getY())) {
 
                         if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 2){
-                            paint.setColor(Color.BLUE);
-                            canvas.drawRect(y1, x1, y2, x2, paint);
+                            /*paint.setColor(Color.BLUE);
+                            canvas.drawRect(y1, x1, y2, x2, paint);*/
+                            start.setBounds(y1, x1, y2, x2);
+                            start.draw(canvas);
 
                         }
                         else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3){
-                            paint.setColor(Color.RED);
+                            /*paint.setColor(Color.RED);
 
-                            canvas.drawRect(y1,x1,y2,x2, paint);
+                            canvas.drawRect(y1,x1,y2,x2, paint);*/
+                            end.setBounds(y1, x1, y2, x2);
+                            end.draw(canvas);
                         }
                         else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 0){
                             d2.setBounds(y1, x1, y2, x2);
@@ -155,9 +170,30 @@ public class MazeView extends SurfaceView {
                     }
                 }
             }
+            Drawable layer=rotateDrawable(character,0);
+            layer.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
+            layer.draw(canvas);
+            /*character.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
+            character.draw(canvas);
+            /*
             paint.setColor(Color.BLACK);
-            canvas.drawCircle(tailleFenetre, tailleFenetre, largeurCase, paint);
+            canvas.drawCircle(tailleFenetre, tailleFenetre, largeurCase, paint);*/
         }
+    }
+
+    Drawable rotateDrawable(Drawable drawable, final float newangle) {
+        Drawable[] arD = {
+                drawable
+        };
+        return new LayerDrawable(arD) {
+            @Override
+            public void draw(Canvas newcanvas) {
+                newcanvas.save();
+                newcanvas.rotate(newangle);
+                super.draw(newcanvas);
+                newcanvas.restore();
+            }
+        };
     }
 
     public void changeXY(float y , float x){
@@ -179,13 +215,15 @@ public class MazeView extends SurfaceView {
         if (newX>=0 && newY>=0&&!(caseX < 0 || caseX >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX][caseY] == 0)) {
             this.x=newX;
             this.y=newY;
+            //this.angle=45;
         }
         else if (newY>=0 &&!(caseX0 < 0 || caseX0 >= maze.getX()) && !(caseY  < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX0][caseY] == 0)) {
             this.y=newY;
+            //this.angle=90;
         }
         else if (newX>=0 &&!(caseX < 0 || caseX >= maze.getX()) && !(caseY0  < 0 || caseY0 >= maze.getY()) &&!( maze.getGrille()[caseX][caseY0] == 0)) {
             this.x=newX;
-
+            //this.angle=0;
         }
 
     }

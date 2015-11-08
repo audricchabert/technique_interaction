@@ -58,6 +58,7 @@ public class TheMaze extends Activity implements SensorEventListener {
         d = wm.getDefaultDisplay();
 
     }
+
     @AfterViews
     public void initButton(){
         buttonSwitchView.setText("Switch View");
