@@ -9,7 +9,9 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
+import android.view.MotionEvent;
 import android.view.Surface;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
@@ -62,6 +64,12 @@ public class TheMaze extends Activity implements SensorEventListener {
     @AfterViews
     public void initButton(){
         buttonSwitchView.setText("Switch View");
+        mazeView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return false;
+            }
+        });
     }
 
     @Override

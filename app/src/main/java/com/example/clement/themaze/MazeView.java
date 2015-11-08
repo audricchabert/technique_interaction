@@ -170,8 +170,8 @@ public class MazeView extends SurfaceView {
                     }
                 }
             }
-            Drawable layer=rotateDrawable(character,0);
-            layer.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
+            Drawable layer=rotateDrawable(character,45);
+            layer.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
             layer.draw(canvas);
             /*character.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
             character.draw(canvas);
