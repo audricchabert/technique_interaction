@@ -96,18 +96,14 @@ public class TheMaze extends Activity implements SensorEventListener {
                     y = -event.values[0];
                     break;
             }
-            long curTime = System.currentTimeMillis();
 
-            if ((curTime - lastUpdate) > 10) {
-                long diffTime = (curTime - lastUpdate);
-                lastUpdate = curTime;
 
                 last_x = x;
                 last_y = y;
                 //mazeView.changeXY(x, y);
                 mazeView.changeXY(x, y);
                 //Log.e("TAG",x+" "+ y);
-            }
+
         }
     }
     @Override

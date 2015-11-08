@@ -30,6 +30,7 @@ public class MazeView extends SurfaceView {
     private int y;
     private boolean init= true;
     private float angle;
+    private long lastUpdate = 0;
 
     public MazeView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -198,6 +199,8 @@ public class MazeView extends SurfaceView {
     }
 
     public void changeXY(float y , float x){
+        y=y*2;
+        x=x*2;
         int largeurCase =Math.min( w / 16,h/16);
         int newX=this.x;
         int newY=this.y;
@@ -229,7 +232,6 @@ public class MazeView extends SurfaceView {
     }
 
     public void changeXYOnClick(float y,float x){
-        Log.e("TAGLAUTRECACA", this.x +" "+this.y);
         int newX=(int) ((x - w/2)/16)+this.x;
         int newY=(int) ((y - h/2)/16)+this.y;
         int largeurCase =Math.min( w / 16,h/16);
@@ -273,9 +275,15 @@ public class MazeView extends SurfaceView {
                 break;
             }
             case MotionEvent.ACTION_MOVE:{
-                float x= event.getX();
-                float y= event.getY();
-                changeXYOnClick(x, y);
+                long curTime = System.currentTimeMillis();
+
+                if ((curTime - lastUpdate) > 50) {
+                    long diffTime = (curTime - lastUpdate);
+                    lastUpdate = curTime;
+                    float x = event.getX();
+                    float y = event.getY();
+                    changeXYOnClick(x, y);
+                }
             }
         }
         return true;
