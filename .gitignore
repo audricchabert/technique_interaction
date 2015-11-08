@@ -4,6 +4,8 @@
 .bin
 .lock
 .gradle
-
+*.bin
+*.imp
 .idea
 
+*.lock
