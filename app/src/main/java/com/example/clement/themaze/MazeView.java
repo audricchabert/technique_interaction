@@ -13,6 +13,7 @@ import android.util.AttributeSet;
 
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -254,5 +255,30 @@ public class MazeView extends SurfaceView {
 
    public void setMapView(){
         mapView=!mapView;
+    }
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+        super.onTouchEvent(event);
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                float x= event.getX();
+                float y= event.getY();
+                changeXYOnClick(x, y);
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                float x= event.getX();
+                float y= event.getY();
+                changeXYOnClick(x, y);
+                break;
+            }
+            case MotionEvent.ACTION_MOVE:{
+                float x= event.getX();
+                float y= event.getY();
+                changeXYOnClick(x, y);
+            }
+        }
+        return true;
+
     }
 }
