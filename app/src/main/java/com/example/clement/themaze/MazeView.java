@@ -67,7 +67,7 @@ public class MazeView extends SurfaceView {
     }
     @Override
     protected void onMeasure(int w, int h){
-        int size =Math.min( w,h);
+        int size =Math.min(w, h);
         setMeasuredDimension(size, size);
         this.w=getMeasuredWidth();
         this.h=getMeasuredHeight();
@@ -150,7 +150,6 @@ public class MazeView extends SurfaceView {
                         }
                         else if ( maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3){
                             /*paint.setColor(Color.RED);
-
                             canvas.drawRect(y1,x1,y2,x2, paint);*/
                             end.setBounds(y1, x1, y2, x2);
                             end.draw(canvas);
@@ -170,9 +169,8 @@ public class MazeView extends SurfaceView {
                     }
                 }
             }
-            Drawable layer=rotateDrawable(character,0);
-            layer.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
-            layer.draw(canvas);
+            character.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
+            character.draw(canvas);
             /*character.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
             character.draw(canvas);
             /*
@@ -225,9 +223,16 @@ public class MazeView extends SurfaceView {
             this.x=newX;
             //this.angle=0;
         }
-
     }
+
+    public void changeXYOnClick(float x,float y){
+        Log.e("TAGLAUTRECACA", this.x +" "+this.y);
+        this.x=(int) ((x - this.x)/16)+this.x;
+        this.y=(int) ((y - this.y)/16)+this.y;
+        Log.e("TAGLAUTRECAAAAAAaaCA", this.x +" "+this.y);
+    }
+
    public void setMapView(){
-       mapView=!mapView;
-   }
+        mapView=!mapView;
+    }
 }
