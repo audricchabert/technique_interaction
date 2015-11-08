@@ -69,13 +69,10 @@ public class TheMaze extends Activity implements SensorEventListener {
         mazeView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-<<<<<<< HEAD
-=======
                 float x= event.getX();
                 float y= event.getY();
                 Log.e("TAMERETAMERE", x +" "+y );
                 mazeView.changeXYOnClick(x, y);
->>>>>>> origin/master
                 return false;
             }
         });
