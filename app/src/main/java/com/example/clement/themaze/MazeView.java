@@ -173,7 +173,7 @@ public class MazeView extends SurfaceView {
             layer.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
             layer.draw(canvas);*/
 
-            character.setBounds(w / 2, h / 2, (w / 2) + (largeurCase * 2), (h / 2) + (largeurCase * 2));
+            character.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
             character.draw(canvas);
             /*
             paint.setColor(Color.BLACK);
