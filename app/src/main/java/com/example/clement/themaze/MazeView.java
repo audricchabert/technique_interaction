@@ -169,7 +169,7 @@ public class MazeView extends SurfaceView {
                     }
                 }
             }
-            Drawable layer=rotateDrawable(character,45);
+            Drawable layer=rotateDrawable(character,0);
             layer.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
             layer.draw(canvas);
 
@@ -227,10 +227,10 @@ public class MazeView extends SurfaceView {
         }
     }
 
-    public void changeXYOnClick(float x,float y){
+    public void changeXYOnClick(float y,float x){
         Log.e("TAGLAUTRECACA", this.x +" "+this.y);
-        this.x=(int) ((x - this.x)/16)+this.x;
-        this.y=(int) ((y - this.y)/16)+this.y;
+        this.x=(int) ((x - w/2)/16)+this.x;
+        this.y=(int) ((y - h/2)/16)+this.y;
         Log.e("TAGLAUTRECAAAAAAaaCA", this.x +" "+this.y);
     }
 
