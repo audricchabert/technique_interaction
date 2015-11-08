@@ -1,6 +1,7 @@
 package com.example.clement.themaze;
 
 import android.app.Activity;
+import android.app.usage.UsageEvents;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -61,12 +62,20 @@ public class TheMaze extends Activity implements SensorEventListener {
 
     }
 
+
     @AfterViews
     public void initButton(){
         buttonSwitchView.setText("Switch View");
         mazeView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+<<<<<<< HEAD
+=======
+                float x= event.getX();
+                float y= event.getY();
+                Log.e("TAMERETAMERE", x +" "+y );
+                mazeView.changeXYOnClick(x, y);
+>>>>>>> origin/master
                 return false;
             }
         });
@@ -76,11 +85,10 @@ public class TheMaze extends Activity implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         Sensor mySensor = event.sensor;
 
-
         if (mySensor.getType()==Sensor.TYPE_ACCELEROMETER){
             float x = event.values[0];
             float y = event.values[1];
-            Log.e("TAG", x + " " + y);
+            //Log.e("TAG", x + " " + y);
 
             switch(d.getRotation()) {
                 case Surface.ROTATION_0:
@@ -110,7 +118,7 @@ public class TheMaze extends Activity implements SensorEventListener {
                 last_y = y;
                 //mazeView.changeXY(x, y);
                 mazeView.changeXY(x, y);
-                Log.e("TAG",x+" "+ y);
+                //Log.e("TAG",x+" "+ y);
             }
         }
     }
