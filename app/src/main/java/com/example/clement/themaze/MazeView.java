@@ -24,12 +24,10 @@ public class MazeView extends SurfaceView {
     private int h;
     private GameLoopThread gameLoopThread;
     private SurfaceHolder holder;
-    private Bitmap bmp;
     private boolean mapView;
     private int x;
     private int y;
     private boolean init= true;
-    private float angle;
     private long lastUpdate = 0;
 
     public MazeView(Context context, AttributeSet attrs) {
@@ -231,7 +229,7 @@ public class MazeView extends SurfaceView {
         }
     }
 
-    public void changeXYOnClick(float y,float x){
+    public void changeXYOnClick(double y,double x){
         int newX=(int) ((x - w/2)/16)+this.x;
         int newY=(int) ((y - h/2)/16)+this.y;
         int largeurCase =Math.min( w / 16,h/16);
@@ -252,7 +250,6 @@ public class MazeView extends SurfaceView {
             this.x=newX;
             //this.angle=0;
         }
-        Log.e("TAGLAUTRECAAAAAAaaCA", this.x +" "+this.y);
     }
 
    public void setMapView(){
@@ -271,7 +268,7 @@ public class MazeView extends SurfaceView {
             case MotionEvent.ACTION_UP: {
                 float x= event.getX();
                 float y= event.getY();
-                changeXYOnClick(x, y);
+                changeXYOnClick( x*0.5, y*0.5);
                 break;
             }
             case MotionEvent.ACTION_MOVE:{
