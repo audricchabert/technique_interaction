@@ -15,6 +15,7 @@ import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
@@ -32,6 +33,8 @@ public class TheMaze extends Activity implements SensorEventListener {
     MazeView mazeView;
     private long lastUpdate = 0;
     private float last_x, last_y, last_z;
+
+    private Chronometer focus;
 
     private boolean map=true;
     @Click
@@ -60,12 +63,14 @@ public class TheMaze extends Activity implements SensorEventListener {
         WindowManager wm = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
         d = wm.getDefaultDisplay();
 
+
     }
 
 
     @AfterViews
     public void initButton(){
         buttonSwitchView.setText("Switch View");
+
 
     }
 
@@ -113,6 +118,9 @@ public class TheMaze extends Activity implements SensorEventListener {
     protected void onResume() {
         super.onResume();
         sensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+
+        focus = (Chronometer) findViewById(R.id.chronometer);
+        focus.start();
 
     }
     protected void onPause() {
