@@ -1,12 +1,14 @@
 package com.example.user.findtheword;
 
 import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.ImageView;
 
 import uk.co.senab.photoview.PhotoViewAttacher;
@@ -16,12 +18,18 @@ public class MainActivity extends AppCompatActivity {
     private ImageView mImageView;
     private PhotoViewAttacher mAttacher;
 
+    Chronometer chronometer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mImageView = (ImageView) findViewById(R.id.imageView);
         mAttacher = new PhotoViewAttacher(mImageView);
+
+        chronometer = (Chronometer) findViewById(R.id.chronometer);
+
+
 
         //L'utilisation d'un scale n'est pas obligatoire
         //mAttacher.setMaximumScale(30.0f);
@@ -41,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                chronometer.start();
 
             }
         });
@@ -52,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+                chronometer.setBase(SystemClock.elapsedRealtime());
             }
         });
 
