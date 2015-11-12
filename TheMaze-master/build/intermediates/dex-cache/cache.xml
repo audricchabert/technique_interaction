@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="D:\Android\TheMaze-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="D:\Android\TheMaze-master\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-4f040c55d83ce397870a471e0900adafb2b32567.jar" />
+    </item>
+    <item
+        jar="C:\Users\user\.gradle\caches\modules-2\files-2.1\org.androidannotations\androidannotations-api\3.3.2\7d6149d856b880bbd676047aacb8446a758fbbdb\androidannotations-api-3.3.2.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="7d6149d856b880bbd676047aacb8446a758fbbdb">
+        <dex dex="D:\Android\TheMaze-master\app\build\intermediates\pre-dexed\debug\androidannotations-api-3.3.2-7d2f433eefc6de1a204b35868edcd061f49e5c75.jar" />
+    </item>
+    <item
+        jar="D:\Android\TheMaze-master\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="d86429b0f0b3f3cafbeb78dda1b9d89119ccb05d">
+        <dex dex="D:\Android\TheMaze-master\app\build\intermediates\pre-dexed\debug\classes-b0c1d932947ac912eadbc8e21fbdc34a3dff13dd.jar" />
+    </item>
+    <item
+        jar="D:\android-sdks\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="D:\Android\TheMaze-master\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-143f793c5ed8df34209ab00e5bea8746169ee148.jar" />
+    </item>
+    <item
+        jar="D:\Android\TheMaze-master\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="D:\Android\TheMaze-master\app\build\intermediates\pre-dexed\debug\classes-cd29c49d2aa9ff249861f9a5bad5509e63d0b9e5.jar" />
+    </item>
+
+</items>
