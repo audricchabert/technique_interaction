@@ -40,6 +40,10 @@ public class TheMaze extends Activity implements SensorEventListener {
     MazeView mazeView;
     @ViewById
     Chronometer chronometer;
+    @ViewById
+    Chronometer chronometerSave;
+    @ViewById
+    TextView wordToFind;
     private boolean map=true;
     @Click
     public void buttonSwitchView(){
@@ -60,11 +64,10 @@ public class TheMaze extends Activity implements SensorEventListener {
             chronometer.stop();
         }
         else{
-
-            chronometer.setBase(SystemClock.elapsedRealtime());
             chronometer.start();
             if (numInteractionDeplacement == 1) {
 
+                buttonSwitchView.setText("You are playing");
                 sensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
             }else{
                 buttonSwitchView.setText("You are playing");
@@ -104,6 +107,7 @@ public class TheMaze extends Activity implements SensorEventListener {
                 break;
         }
         numInteractionSwip=1;
+        chronometer.setBase(SystemClock.elapsedRealtime());
     }
 
     @Override
@@ -150,6 +154,10 @@ public class TheMaze extends Activity implements SensorEventListener {
         super.onPause();
         if (numInteractionDeplacement==1)
             sensorManager.unregisterListener(this);
+    }
+
+    public void setWordToFind(String word){
+        wordToFind.setText(word);
     }
 
 

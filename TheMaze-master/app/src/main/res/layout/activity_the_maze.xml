@@ -23,11 +23,19 @@
         android:layout_height="wrap_content"
         android:id ="@+id/mazeView">
     </com.example.clement.themaze.MazeView>
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/control"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="WordToFind"
+        android:id="@+id/wordToFind" />
+    <Chronometer
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:format="%s"
+        android:id="@+id/chronometerSave"/>
+
+
+
 </LinearLayout>

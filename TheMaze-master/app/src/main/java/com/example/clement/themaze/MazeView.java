@@ -1,5 +1,6 @@
 package com.example.clement.themaze;
 
+import android.app.Activity;
 import android.content.Context;
 
 import android.graphics.Canvas;
@@ -8,6 +9,7 @@ import android.graphics.Paint;
 
 
 import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.util.AttributeSet;
 
 import android.graphics.drawable.Drawable;
@@ -15,6 +17,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 
 public class MazeView extends SurfaceView {
@@ -35,15 +42,38 @@ public class MazeView extends SurfaceView {
     public int launchFromY;
     private boolean launching=false;
     private boolean moving=false;
+    private int currentFruits;
+    private ArrayList<Fruits> listFruit;
+    private TheMaze mazeActivity;
 
     public MazeView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        currentFruits=100;
         mapView=true;
+        currentFruits=0;
         paint=new Paint();
         this.setBackgroundColor(Color.WHITE);
         maze= new Maze();
+        mazeActivity = (TheMaze)getContext();
         gameLoopThread = new GameLoopThread(this,context);
         holder = getHolder();
+
+        listFruit = new ArrayList<>();
+        listFruit.add(new Fruits(3,"Banane"));
+        listFruit.add(new Fruits(4, "Brocoli"));
+        listFruit.add(new Fruits(5, "Carotte"));
+        listFruit.add(new Fruits(6,"Chou"));
+        listFruit.add(new Fruits(7,"Citron"));
+        listFruit.add(new Fruits(8,"Raisin"));
+        Random rdm= new Random();
+        int nbChoisie= rdm.nextInt(listFruit.size());
+        //int nbChoisie=3;
+        currentFruits = nbChoisie;
+
+
+
+
+
         holder.addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
@@ -98,6 +128,7 @@ public class MazeView extends SurfaceView {
         Drawable raisin = getResources().getDrawable(R.drawable.grappe_de_raisin);
 
 
+
             int largeurCase =Math.min( w / 16,h/16);
             int largeurCaseInNewFrame =Math.min( w/4,h/4);
             int tailleFenetre =Math.min( w / 2,h/2);
@@ -132,22 +163,27 @@ public class MazeView extends SurfaceView {
                         else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 3) {
                             banane.setBounds(y1, x1, y2, x2);
                             banane.draw(canvas);
+
                         }
                         else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 4) {
                             brocoli.setBounds(y1, x1, y2, x2);
                             brocoli.draw(canvas);
+
                         }
                         else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 5) {
                             carotte.setBounds(y1, x1, y2, x2);
                             carotte.draw(canvas);
+
                         }
                         else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 6) {
                             chou.setBounds(y1, x1, y2, x2);
                             chou.draw(canvas);
+
                         }
-                        else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 8) {
+                        else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 7) {
                             citron.setBounds(y1, x1, y2, x2);
                             citron.draw(canvas);
+
                         }
                         else if(maze.getGrille()[caseX - 2 + i][caseY - 2 + j] == 8) {
                             raisin.setBounds(y1, x1, y2, x2);
@@ -160,36 +196,17 @@ public class MazeView extends SurfaceView {
                     }
                 }
 
-            /*Drawable layer=rotateDrawable(character,0);
-            layer.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
-            layer.draw(canvas);*/
 
-            character.setBounds(w / 2-largeurCase, h / 2-largeurCase, (w / 2) + largeurCase , (h / 2) + largeurCase);
+            character.setBounds(w / 2 - largeurCase, h / 2 - largeurCase, (w / 2) + largeurCase, (h / 2) + largeurCase);
             character.draw(canvas);
             if (launching) {
-                paint.setStrokeWidth(15);
+                paint.setStrokeWidth(16);
                 canvas.drawLine(h / 2, w / 2, launchFromX, launchFromY, paint);
             }
-            /*
-            paint.setColor(Color.BLACK);
-            canvas.drawCircle(tailleFenetre, tailleFenetre, largeurCase, paint);*/
         }
+        mazeActivity.wordToFind.setText(listFruit.get(currentFruits).getName());
     }
-/**
-    Drawable rotateDrawable(Drawable drawable, final float newangle) {
-        Drawable[] arD = {
-                drawable
-        };
-        return new LayerDrawable(arD) {
-            @Override
-            public void draw(Canvas newcanvas) {
-                newcanvas.save();
-                newcanvas.rotate(newangle);
-                super.draw(newcanvas);
-                newcanvas.restore();
-            }
-        };
-    }*/
+
 
     public void changeXY(float y , float x){
 
@@ -221,17 +238,18 @@ public class MazeView extends SurfaceView {
             this.x=newX;
         }
 
-        if(maze.getGrille()[caseX][caseY]==3){
+        //System.out.println(listFruit.get(currentFruits).getName());
+        if(maze.getGrille()[caseX][caseY]== listFruit.get(currentFruits).getValue()){
             this.x=30;
             this.y=30;
+            Random rdm= new Random();
+            int nbChoisie= rdm.nextInt(listFruit.size());
+            currentFruits = nbChoisie;
+            mazeActivity.wordToFind.setText(listFruit.get(currentFruits).getName());
+            mazeActivity.chronometerSave.setText(mazeActivity.chronometer.getText());
+            mazeActivity.chronometer.setBase(SystemClock.elapsedRealtime());
         }
 
-        System.out.println("new X : "+newX);
-        System.out.println("new Y : "+newY);
-        System.out.println("case X : " + caseX);
-        System.out.println("case X0 : "+caseX0);
-        System.out.println("caseY : " +caseY);
-        System.out.println("case YO : "+caseY0);
     }
 
     public void changeXYOnClick(double y,double x){
@@ -253,9 +271,16 @@ public class MazeView extends SurfaceView {
         else if (newX>=0 &&!(caseX < 0 || caseX >= maze.getX()) && !(caseY0  < 0 || caseY0 >= maze.getY()) &&!( maze.getGrille()[caseX][caseY0] == 0)) {
             this.x=newX;
         }
-        if(maze.getGrille()[caseX][caseY]==3){
-            this.x=30;
-            this.y=30;
+        //System.out.println(listFruit.get(currentFruits).getName());
+        if(maze.getGrille()[caseX][caseY]== listFruit.get(currentFruits).getValue()){
+            Random rdm= new Random();
+            int nbChoisie= rdm.nextInt(listFruit.size());
+            currentFruits = nbChoisie;
+            mazeActivity.wordToFind.setText(listFruit.get(currentFruits).getName());
+            this.x = 30;
+            this.y = 30;
+            mazeActivity.chronometerSave.setText(mazeActivity.chronometer.getText());
+            mazeActivity.chronometer.setBase(SystemClock.elapsedRealtime());
         }
 
     }
@@ -288,12 +313,6 @@ public class MazeView extends SurfaceView {
                     if (activeOnTouch && ! mapView) {
                         changeXYOnClick(x, y);
                     }
-                    else if(activeLaunch&& !mapView&& !moving){
-                        launching=false;
-                        moving =true;
-                        new LaunchBall(this,(int) x,(int) y).execute();
-                    }
-                    break;
                 }
                 case MotionEvent.ACTION_MOVE: {
                     if (activeOnTouch && ! mapView) {
@@ -322,121 +341,11 @@ public class MazeView extends SurfaceView {
         activeOnTouch=true;
     }
 
-    public void activeLaunch() {
-        activeLaunch=true;
-    }
-
-    public void launchBall(float y, float x){
-
-    }
     public void setXY(int x,int y){
         this.x=x;
         this.y=y;
         Log.e("TAG",x+" "+y);
 
     }
-    private class LaunchBall extends AsyncTask<Void, Integer, Void>
-    {
-        MazeView mazeView;
 
-        int x2;
-        int y2;
-        LaunchBall(MazeView mazeView, int y, int x){
-            this.mazeView=mazeView;
-            this.x2=x;
-            this.y2=y;
-
-        }
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values){
-            super.onProgressUpdate(values);
-            mazeView.setXY(values[0], values[1]);
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            int distX=(int) -(x2-h/2)*2;
-            int distY=(int) -(y2-h/2)*2;
-            int orientationX;
-            int orientationY;
-            if( distX>0){
-                orientationX=1;
-            }
-            else{
-                orientationX=-1;
-                distX*=-1;
-            }
-            if( distY>0){
-                orientationY=1;
-            }
-            else{
-                orientationY=-1;
-                distY*=-1;
-            }
-            int avanceX=distX/100;
-            int avanceY=distY/100;
-            if(avanceX==0){
-                distX=0;
-            }
-            if(avanceY==0){
-                distY=0;
-            }
-            while(distX>0 || distY>0) {
-                int newX=(int)mazeView.x+avanceX*orientationX;
-                int newY=(int)mazeView.y+avanceY*orientationY;
-
-                int largeurCase =Math.min( w / 16,h/16);
-                int caseX=newX/largeurCase;
-                int caseY=newY/largeurCase;
-                int caseX0=mazeView.x/largeurCase;
-                int caseY0=mazeView.y/largeurCase;
-                if (newX >= 0 && newY >= 0 && !(caseX < 0 || caseX >= maze.getX()) && !(caseY < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX][caseY] == 0)) {
-
-                } else if (newY >= 0 && !(caseX0 < 0 || caseX0 >= maze.getX()) && !(caseY < 0 || caseY >= maze.getY()) && !(maze.getGrille()[caseX0][caseY] == 0)) {
-                    orientationX*=-1;
-                    mazeView.x=(int)mazeView.x+avanceX*orientationX;
-                } else if (newX >= 0 && !(caseX < 0 || caseX >= maze.getX()) && !(caseY0 < 0 || caseY0 >= maze.getY()) && !(maze.getGrille()[caseX][caseY0] == 0)) {
-                    orientationY*=-1;
-                    mazeView.y=(int)mazeView.y+avanceY*orientationY;
-                } else {
-                    orientationX*=-1;
-                    mazeView.x=(int)mazeView.x+avanceX*orientationX;
-                    orientationY*=-1;
-                    mazeView.y=(int)mazeView.y+avanceY*orientationY;
-                }
-                /*
-                System.out.println("new X : "+newX);
-                System.out.println("new Y : "+newY);
-                System.out.println("case X : " + caseX);
-                System.out.println("case X0 : "+caseX0);
-                System.out.println("caseY : " +caseY);
-                System.out.println("case YO : "+caseY0);
-                */
-                distX-=avanceX;
-                distY-=avanceY;
-                /*avanceX-=2;
-                avanceY-=2;*/
-                publishProgress(newX, newY);
-
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            mazeView.moving=false;
-
-        }
-    }
 }
