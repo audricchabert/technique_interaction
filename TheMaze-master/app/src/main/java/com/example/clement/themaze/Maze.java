@@ -20,16 +20,23 @@ public class Maze {
         //0 noir, 1 blanc 2 entré 3 sortie
         for (int i =0;i<16;i++){
             for(int j =0; j<16;j++) {
-                    grille[i][j] = 1;
+                    if(j==15){
+                        grille[i][j] =0;
+                    }else if(i==15){
+                        grille[i][j] =0;
+                    }else {
+                        grille[i][j] = 1;
+                    }
             }
         }
         grille[0][0]=2;
         grille[5][10]=3;
         grille[3][5]=4;
-        grille[10][15]=5;
-        grille[15][15]=6;
+        grille[10][14]=5;
+        grille[14][14]=6;
         grille[4][14]=7;
         grille[10][5]=8;
+
     }
 
     public int getY() {
